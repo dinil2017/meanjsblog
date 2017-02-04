@@ -11,6 +11,7 @@ References:
 
 	- http://meanjs.org/generator.html
 	- https://www.youtube.com/watch?v=a-dn6k6Frq4
+	- https://www.digitalocean.com/community/tutorials/how-to-install-a-mean-js-stack-on-an-ubuntu-14-04-server
 
 Dependent modules:
 
