@@ -12,6 +12,9 @@ References:
 	- http://meanjs.org/generator.html
 	- https://www.youtube.com/watch?v=a-dn6k6Frq4
 	- https://www.digitalocean.com/community/tutorials/how-to-install-a-mean-js-stack-on-an-ubuntu-14-04-server
+	- https://github.com/bustardcelly/grunt-forever
+	- http://stackoverflow.com/questions/22543580/how-to-use-grunt-forever-and-grunt-watch-together
+	- https://github.com/foreverjs/forever
 
 Dependent modules:
 
@@ -19,20 +22,18 @@ Dependent modules:
 	- Express
 	- Angular	
 	- Node
-	- PM2
+	- forever
 	
 	
 Userful server commands:
 
 	-	npm install - install dependency mentioned in application's package json
 
-	-	cd node-js-mongo/    -  to go to application folder
-	-	npm start	-	to start node js application
-	-	npm stop	- 	to stop node js application
-	-	sudo npm install -g pm2	-	install pm2 module globally, which ensures application up and running
-	-	pm2 start ./bin/www --name nodejs-app	-	start application by pm2 with name 'nodejs-app'
-	-	pm2 stop nodejs-app	-	stop 'nodejs-app' application started by pm2
-	-	pm2 list	-	list all processes
+	-	cd meanjsblog    -  to go to application folder	
+	-	npm install -g grunt-forever	- 	install module to run grunt always	
+	-	grunt --force forever:server1:start - to start application with forever
+	-	grunt --force forever:server1:stop - to stop application started by forever
+	-	grunt --force forever:server1:restart - to restart application started by forever
 	
 
 
