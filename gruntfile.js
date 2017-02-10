@@ -24,6 +24,14 @@ module.exports = function (grunt) {
         NODE_ENV: 'production'
       }
     },
+	forever: {
+      server1: {
+        options: {
+          index: 'server.js',
+          logDir: 'logs'
+        }        
+      }
+    },
     watch: {
       serverViews: {
         files: defaultAssets.server.views,
@@ -231,6 +239,8 @@ module.exports = function (grunt) {
 
   // Load NPM tasks
   require('load-grunt-tasks')(grunt);
+  
+  grunt.loadNpmTasks('grunt-forever');
 
   // Make sure upload directory exists
   grunt.task.registerTask('mkdir:upload', 'Task that makes sure upload directory exists.', function () {
@@ -287,5 +297,6 @@ module.exports = function (grunt) {
   grunt.registerTask('debug', ['env:dev', 'lint', 'mkdir:upload', 'copy:localConfig', 'concurrent:debug']);
 
   // Run the project in production mode
-  grunt.registerTask('prod', ['build', 'env:prod', 'mkdir:upload', 'copy:localConfig', 'concurrent:default']);
+  grunt.registerTask('prod', ['build', 'env:prod', 'mkdir:upload', 'copy:localConfig', 'concurrent:default']);  
+
 };
