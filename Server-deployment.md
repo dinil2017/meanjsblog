@@ -22,7 +22,7 @@ Dependent modules:
 	- Express
 	- Angular	
 	- Node
-	- forever
+	- grunt-forever
 	
 	
 Userful server commands:
