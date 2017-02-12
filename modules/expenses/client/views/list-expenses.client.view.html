@@ -1,16 +1,16 @@
 <section>
 
 
-<div class="col-md-12">
-    <!-- <form name="vm.form.expenseFormSearch" class="form-horizontal" ng-submit="vm.search(vm.form.expenseForm.$valid)" novalidate> -->
+<!-- <div class="col-md-12">
+    <form name="vm.form.expenseFormSearch" class="form-horizontal" ng-submit="vm.search(vm.form.expenseForm.$valid)" novalidate>
     <form name="vm.form.expenseFormSearch" class="form-horizontal" novalidate>
       <fieldset>
         <div class="form-group">
           <label class="control-label" for="name">Expense Search</label>
           <input name="name" type="text" ng-model="vm.searchExpense" id="name" class="form-control" placeholder="Expense Name" required>
-          <!-- <div ng-messages="vm.form.expenseFormSearch.name.$error" role="alert">
+          <div ng-messages="vm.form.expenseFormSearch.name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Expense name is required for search</p>
-          </div> -->
+          </div>
         </div>
         <a class="btn btn-primary" ui-sref="expenses.search({ name: vm.searchExpense })">
         <i class="glyphicon glyphicon-search"></i>
@@ -20,15 +20,33 @@
         </div>
       </fieldset>
     </form>
-</div>
+</div> -->
+
+<br>
+  <div class="col-xs-12 col-sm-8">  
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search Expense">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Search</button>
+      </span>
+    </div><!-- /input-group -->    
+  </div>  
+
+  <br>
 
   <div class="page-header">
     <h2>Expenses</h2>
   </div>
+
+  <div class="col-xs-12 col-sm-8" ng-if="vm.expenses.length">    
+      <input type="text" class="form-control" ng-model="vm.searchExpense" placeholder="Filter Expense">    
+  </div>  
+  <br><br><br>
+
   
 
   <div class="list-group">
-    <a ng-repeat="expense in vm.expenses"
+    <a ng-repeat="expense in vm.expenses | filter:{name: vm.searchExpense}"
        ui-sref="expenses.view({ expenseId: expense._id })"
        class="list-group-item">      
       <h3 class="list-group-item-heading" ng-bind="expense.name"></h3>

@@ -9,7 +9,7 @@
 
   function ExpensesListController(ExpensesService) {
     var vm = this;
-    var searchExpense = '';
+    vm.searchExpense = '';
     vm.error = null;
     vm.form = {};
 
