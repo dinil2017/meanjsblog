@@ -21,7 +21,7 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/expenses/:expenseId',
       permissions: '*'
     }, {
-      resources: '/api/expenses/:expenseName',
+      resources: '/api/expenses/search/:expenseName',
       permissions: '*'
     }]
   }, {
@@ -33,7 +33,7 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/expenses/:expenseId',
       permissions: ['get']
     }, {
-      resources: '/api/expenses/:expenseName',
+      resources: '/api/expenses/search/:expenseName',
       permissions: ['get']
     }]
   }, {
@@ -45,7 +45,7 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/expenses/:expenseId',
       permissions: ['get']
     }, {
-      resources: '/api/expenses/:expenseName',
+      resources: '/api/expenses/search/:expenseName',
       permissions: ['get']
     }]
   }]);

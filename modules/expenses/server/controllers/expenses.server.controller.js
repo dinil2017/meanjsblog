@@ -86,7 +86,7 @@ exports.list = function(req, res) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else {
+    } else {      
       res.jsonp(expenses);
     }
   });
@@ -95,13 +95,13 @@ exports.list = function(req, res) {
 /**
  * Expenses Search
  */
-exports.search = function(req, res) {
+exports.search = function(req, res, expenseName) {
   Expense.find({'name' : 'Shopping'}).sort('-created').populate('user', 'displayName').exec(function(err, expenses) {
-    if (err) {
+    if (err) {      
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else {
+    } else {      
       res.jsonp(expenses);
     }
   });

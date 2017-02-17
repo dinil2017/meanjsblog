@@ -24,7 +24,7 @@
         }
       })
       .state('expenses.search', {
-        url: '/:expenseName',
+        url: '/search/:expenseName',
         templateUrl: 'modules/expenses/client/views/list-expenses.client.view.html',
         controller: 'ExpensesListController',
         controllerAs: 'vm',

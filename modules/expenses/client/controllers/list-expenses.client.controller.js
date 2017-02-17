@@ -5,24 +5,30 @@
     .module('expenses')
     .controller('ExpensesListController', ExpensesListController);
 
-  ExpensesListController.$inject = ['ExpensesService'];
+  ExpensesListController.$inject = ['ExpensesService', '$scope', '$state'];
 
-  function ExpensesListController(ExpensesService) {
+  function ExpensesListController(ExpensesService, $scope, $state) {
     var vm = this;
-    vm.searchExpense = '';
+    vm.filterExpense = '';
+    vm.searchExpense = '';        
     vm.error = null;
     vm.form = {};
 
     vm.expenses = ExpensesService.query();
 
     // Save Expense
-    function search(isValid) {
+    this.search = function(isValid) {
       // if (!isValid) {
-      //   $scope.$broadcast('show-errors-check-validity', 'vm.form.expenseFormSearch');
+      //   $scope.$broadcast('show-err	ors-check-validity', 'vm.form.expenseFormSearch');
       //   return false;
       // }
       alert('fsdfsdf');
- 		$state.go('expenses.search');      
-    }     
+ 	  $state.go('expenses.search', {expenseName : vm.searchExpense});      
+    } ;
+
+    this.clearFilter = function () {    	
+
+    	vm.filterExpense = '';
+    };
   }
 }());

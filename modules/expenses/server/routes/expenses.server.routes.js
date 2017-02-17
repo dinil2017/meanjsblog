@@ -17,6 +17,10 @@ module.exports = function(app) {
     .put(expenses.update)
     .delete(expenses.delete);
 
+  app.route('/api/expenses/search/:expenseName').all(expensesPolicy.isAllowed)
+    .get(expenses.search);
+
   // Finish by binding the Expense middleware
   app.param('expenseId', expenses.expenseByID);
+  app.param('expenseName', expenses.search);
 };
