@@ -95,8 +95,8 @@ exports.list = function(req, res) {
 /**
  * Expenses Search
  */
-exports.search = function(req, res, expenseName) {
-  Expense.find({'name' : 'Shopping'}).sort('-created').populate('user', 'displayName').exec(function(err, expenses) {
+exports.search = function(req, res, next, expenseName) {
+  Expense.find({'name' : expenseName}).sort('-created').populate('user', 'displayName').exec(function(err, expenses) {
     if (err) {      
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
