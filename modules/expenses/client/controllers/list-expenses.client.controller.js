@@ -40,7 +40,8 @@
 
     // reset search criteria
     this.resetSearch = function() {
-    	vm.searchExpense = '';     	
+    	vm.searchExpense = '';  
+    	vm.searchNoResult = false;   	
     }
 
 	// list all expenses
