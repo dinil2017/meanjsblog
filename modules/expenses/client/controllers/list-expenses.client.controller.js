@@ -13,15 +13,21 @@
     vm.searchExpense = '';        
     vm.error = null;
     vm.form = {};
+    vm.searchNoResult = false;
 
     vm.expenses = ExpensesService.query();
 
     // Search Expense
     this.search = function() {         
- 	  
+ 	  vm.searchNoResult = false;
  	  $http.get('/api/expenses/search/' + vm.searchExpense).success(function(response) {
-    	console.log("Expense Search Successfull!!!");
+    	
     	vm.expenses = response;
+
+    	if(response == undefined || response.length == 0) {
+    		vm.searchNoResult = true;
+    	}
+
   	  });
   	  
     } ;
@@ -31,5 +37,17 @@
 
     	vm.filterExpense = '';
     };
+
+    // reset search criteria
+    this.resetSearch = function() {
+    	vm.searchExpense = '';     	
+    }
+
+	// list all expenses
+    this.listExpenses = function() {
+    	
+		this.resetSearch();
+    	vm.expenses = ExpensesService.query();    	
+    }
   }
 }());
