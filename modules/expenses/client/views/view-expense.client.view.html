@@ -1,0 +1,28 @@
+<section>
+  <div class="page-header">
+    <h1 ng-bind="vm.expense.name"></h1>
+    <h4>Expense By: <span ng-bind="vm.expense.expenseBy"></span></h4>
+      <h4>Amount: <span ng-bind="vm.expense.amount"></span></h4>
+  </div>
+  <div class="pull-right"
+       ng-show="vm.expense.isCurrentUserOwner">
+    <a class="btn btn-primary"
+       ui-sref="expenses.edit({ expenseId: vm.expense._id })">
+      <i class="glyphicon glyphicon-edit"></i>
+    </a>
+    <a class="btn btn-primary" ng-click="vm.remove()">
+      <i class="glyphicon glyphicon-trash"></i>
+    </a>
+  </div>
+  <small>
+    <em class="text-muted">
+      Added on
+      <span ng-bind="vm.expense.created | date:'mediumDate'"></span>
+      by
+      <span ng-if="vm.expense.user"
+            ng-bind="vm.expense.user.displayName"></span>
+      <span ng-if="!vm.expense.user">Deleted User</span>
+    </em>
+  </small>
+  <p class="lead" ng-bind="vm.expense.content"></p>
+</section>

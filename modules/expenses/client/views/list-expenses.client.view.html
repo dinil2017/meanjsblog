@@ -1,0 +1,55 @@
+<section>
+
+
+<br>
+  <div class="col-xs-12 col-sm-8">  
+    <div class="input-group">
+      <input type="text" class="form-control" ng-model="vm.searchExpense" placeholder="Search Expense">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="vm.search()" ng-disabled="!vm.searchExpense.length">Search</button>     
+        <button class="btn btn-default" type="button" ng-click="vm.listExpenses()" ng-disabled="!vm.searchExpense.length">Reset</button>
+      </span>
+    </div><!-- /input-group -->        
+  </div>  
+
+  <br>
+
+  <div class="page-header" ng-if="vm.expenses.length">
+    <h2>Expenses</h2>
+  </div>
+  
+  <div class="col-xs-12 col-sm-8" ng-if="vm.expenses.length">  
+    <div class="input-group">
+      <input type="text" class="form-control" ng-model="vm.filterExpense" placeholder="Filter Expense">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="vm.clearFilter()" ng-disabled="!vm.filterExpense.length">Clear</button>
+      </span>
+    </div><!-- /input-group -->    
+  </div>  
+  <br><br><br>
+
+  
+
+  <div class="list-group">
+    <a ng-repeat="expense in vm.expenses | filter:{name: vm.filterExpense}"
+       ui-sref="expenses.view({ expenseId: expense._id })"
+       class="list-group-item">      
+      <h3 class="list-group-item-heading" ng-bind="expense.name"></h3>
+      <h4>Expense By: <span ng-bind="expense.expenseBy"></span></h4>
+      <h4>Amount: <span ng-bind="expense.amount"></span></h4>
+      <small class="list-group-item-text">
+        Added on
+        <span ng-bind="expense.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="expense.user" ng-bind="expense.user.displayName"></span>
+        <span ng-if="!expense.user">Deleted User</span>
+      </small>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.expenses.$resolved && !vm.expenses.length">
+    No Expenses yet, why don't you <a ui-sref="expenses.create">create one</a>?
+  </div>
+  <div class="alert alert-success text-center" ng-if="vm.searchNoResult">
+    No expense found with Expense Name '{{vm.searchExpense}}'     &nbsp; &nbsp; &nbsp; <a ng-click="vm.listExpenses()">All Expenses</a>   
+  </div>
+</section>
