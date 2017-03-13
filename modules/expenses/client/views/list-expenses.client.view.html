@@ -6,8 +6,8 @@
     <div class="input-group">
       <input type="text" class="form-control" ng-model="vm.searchExpense" placeholder="Search Expense">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button" ng-click="vm.search()" ng-disabled="!vm.searchExpense.length">Search</button>     
-        <button class="btn btn-default" type="button" ng-click="vm.listExpenses()" ng-disabled="!vm.searchExpense.length">Reset</button>
+        <button class="btn btn-success" type="button" ng-click="vm.search()" ng-disabled="!vm.searchExpense.length">Search</button>     
+        <button class="btn btn-primary" type="button" ng-click="vm.listExpenses()" ng-disabled="!vm.searchExpense.length">Reset</button>
       </span>
     </div><!-- /input-group -->        
   </div>  
@@ -15,8 +15,11 @@
   <br>
 
   <div class="page-header" ng-if="vm.expenses.length">
-    <h2>Expenses</h2>
+    <h2>Expenses</h2>    
   </div>
+
+  <button class="btn btn-success" type="button" ng-click="vm.exportExpenses()" title="Export Expenses" 
+  ng-show="vm.expenses.length" style="float:right">Export</button>
   
   <div class="col-xs-12 col-sm-8" ng-if="vm.expenses.length">  
     <div class="input-group">
@@ -26,8 +29,7 @@
       </span>
     </div><!-- /input-group -->    
   </div>  
-  <br><br><br>
-
+  <br><br><br> 
   
 
   <div class="list-group">

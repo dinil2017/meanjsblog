@@ -15,6 +15,9 @@
     vm.form = {};
     vm.searchNoResult = false;
 
+    vm.example1model = []; 
+    vm.example1data = [ {id: 1, label: "David"}, {id: 2, label: "Jhon"}, {id: 3, label: "Danny"}];
+
     vm.expenses = ExpensesService.query();
 
     // Search Expense
@@ -24,7 +27,7 @@
     	
     	vm.expenses = response;
 
-    	if(response == undefined || response.length == 0) {
+    	if(response === undefined || response.length === 0) {
     		vm.searchNoResult = true;
     	}
 
@@ -49,6 +52,17 @@
     	
 		this.resetSearch();
     	vm.expenses = ExpensesService.query();    	
+    }
+
+    this.exportExpenses = function() {
+
+        alasql.fn.datetime = function(dateStr) {
+            var date = new Date(dateStr);
+            return date.toLocaleString();
+        };
+     
+        var opts = {sheetid:'Expense Report',header:true};
+        alasql('SELECT datetime(created) AS DATE, name as EXPENSE_NAME, expenseBy as EXPENSE_BY, amount as AMOUNT INTO XLSX("expense-report.xlsx",?) FROM ?', [opts, vm.expenses]);
     }
   }
 }());
